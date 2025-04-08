@@ -1,4 +1,20 @@
-# pending: program description
+# 
+#   phonon-mediatedSuperconductivity_EPW_SCAN.ipynb
+#
+#   Using Quantum ESPRESSO, the self-consistent field calculation creates input for 
+#   and runs the method, pw.x, using the SCAN functional for the sake of computing 
+#   the ground-state electron density. The total energy is parsed from the Fermi 
+#   energy, which will be used later in EPW. Then, ph.x is used to compute a q-point
+#   grid with dynamical matrices that is vital for electron-phonon coupling, 
+#   including phonon frequencies and modes. Finally, the epw.x method finds the 
+#   Eliashberg spectral function (α²F(ω)), the coupling strength, and the averaged
+#   frequency. These outputs reveal which phonon modes (Pb/Cu vibrations) mediate 
+#   pairing, the total EPC strength, and the soft modes that may enhance the resultant
+#   critical temperature, if the coupling strength is large, respectively. All will 
+#   be useful for determining the superconductivity of LK-99. 
+#
+#____________________________________________________________________________________
+
 
 import os
 from pymatgen.core import Structure
@@ -166,35 +182,3 @@ try:
         parts = line.split()
         omega.append(float(parts[0]))
         alpha2F.append(float(parts[1]))
-    
-    # plots Eliashberg function
-
-    plt.figure(figsize=(10, 6))
-    plt.plot(omega, alpha2F, 'r-', linewidth=2)
-    plt.xlabel("Frequency (meV)", fontsize=12)
-    plt.ylabel(r"$\alpha^2F(\omega)$", fontsize=12)
-    plt.title("Eliashberg Spectral Function (SCAN)", fontsize=14)
-    plt.grid(alpha=0.3)
-    plt.savefig("eliashberg_scan.png", dpi=300, bbox_inches='tight')
-    plt.show()
-    
-    # calculates λ and ω_log
-
-    lambda_total = 2 * np.trapz([a/w for a, w in zip(alpha2F, omega)], omega)
-    omega_log = np.exp(2/lambda_total * np.trapz([a*np.log(w)/w for a, w in zip(alpha2F, omega)], omega))
-    
-    print("\nSuperconductivity parameters:")
-    print(f"Electron-phonon coupling λ = {lambda_total:.3f}")
-    print(f"Logarithmic average frequency ω_log = {omega_log:.3f} meV")
-    
-    # displays output files
-
-    print("\nCalculation outputs:")
-    display(FileLink("scan_scf.out"))
-    display(FileLink("ph.out"))
-    display(FileLink("epw.out"))
-    display(FileLink("eliashberg_scan.png"))
-
-except Exception as e:
-    
-    print(f"Error in post-processing: {str(e)}")
