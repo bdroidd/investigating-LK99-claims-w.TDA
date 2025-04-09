@@ -1,19 +1,34 @@
-    # pending: program description
+# 
+#   structuralRelaxation_PBEsol.ipynb
+#
+#   The program loads the LK-99 crystallographic information file and reads it to
+#   determine the initial atomic positions and lattice parameters for relation. 
+#   Then, Quantum ESPRESSO-friendly input is generated for the relaxation process, 
+#   where a 4x4x4 k-point grid is created for Brillouin zone sampling and the 
+#   Methfessel-Paxton smearing method is applied to minimize artificial entropy 
+#   effects. Running pw.x (from the QE main DFT engine) relaxes atomic positions 
+#   and cell volume. This convergence calculation is verified and the result is 
+#   displayed to the user, followed by a final relaxed structure, in an interactive 
+#   3D viewer.
+#
+#____________________________________________________________________________________
 
-    from pymatgen.core import Structure 
-    from pymatgen.io.quantumespresso import PWInput 
-    from pymatgen.visualization import plotly_vis
 
-    # loading the LK-99 CIF 
+from pymatgen.core import Structure 
+from pymatgen.io.quantumespresso import PWInput 
+from pymatgen.visualization import plotly_vis
+from pymatgen.io.quantumespresso import QEOutput
 
-    structure = Structure.from_file("LK99.cif") 
+# loads the LK-99 CIF 
 
-    # generating QE input for PBEsol relaxation 
+structure = Structure.from_file("LK99.cif") 
 
-    input_pbesol = PWInput 
+# generates QE input for PBEsol relaxation 
+
+input_pbesol = PWInput 
     
-    ( structure, pseudopotentials = 
-    
+( structure, pseudopotentials = 
+   
     { 
         "Pb": "Pb.pbesol-n-rrkjus_psl.1.0.0.UPF", 
         "Cu": "Cu.pbesol-n-rrkjus_psl.1.0.0.UPF", 
@@ -21,9 +36,9 @@
         "O": "O.pbesol-n-rrkjus_psl.1.0.0.UPF", 
     }, 
     
-    control = {"calculation": "relax", "tprnfor": True, "tstress": True}, 
+control = {"calculation": "relax", "tprnfor": True, "tstress": True}, 
     
-    system = 
+system = 
     
     { 
         "ecutwfc": 60, 
@@ -34,28 +49,31 @@
         "degauss": 0.02, 
     }, 
     
-    kpts = (4, 4, 4),) 
+kpts = (4, 4, 4),) 
     
-    input_pbesol.write_file("relax_pbesol.in") 
+input_pbesol.write_file("relax_pbesol.in") 
 
-    # running Quantum ESPRESSO (where pw.x is in the PATH)
+# runs Quantum ESPRESSO (where pw.x is in the PATH)
     
-    !mpirun -np 4 pw.x -in relax_pbesol.in > relax_pbesol.out
+!mpirun -np 4 pw.x -in relax_pbesol.in > relax_pbesol.out
 
-    # verifying completion
+# verifies completion
     
-    if "JOB COMPLETE" in open("relax_pbesol.out").read():
+if "JOB COMPLETE" in open("relax_pbesol.out").read():
     
-        print("Relaxation worked!")
+    print("Relaxation worked!")
     
-    # link to download output
+# displays link to download output
     
-    display(FileLink("relax_pbesol.out"))
+display(FileLink("relax_pbesol.out"))
 
-    else:
+else:
+print("Relaxation failed. Check relax_pbesol.out.")
 
-        print("Relaxation failed. Check relax_pbesol.out.")
+# visualizes strcture 
 
-    # visualizing strcture 
+qe_out = QEOutput("relax_pbesol.out")
+
+final_structure = qe_out.final_structure
     
-    plotly_vis.show_structure(final_structure)
+plotly_vis.show_structure(final_structure)
