@@ -27,7 +27,7 @@ structure = Structure.from_file("LK99.cif")
 
 input_pbesol = PWInput 
     
-( structure, pseudopotentials = 
+(structure, pseudopotentials = 
    
     { 
         "Pb": "Pb.pbesol-n-rrkjus_psl.1.0.0.UPF", 
