@@ -11,7 +11,7 @@
 #   functional. 
 #____________________________________________________________________________________
 
-import os
+    import os
     from pymatgen.core import Structure
     from pymatgen.io.quantumespresso import PWInput
     from IPython.display import FileLink, display
