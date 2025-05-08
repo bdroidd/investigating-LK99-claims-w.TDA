@@ -3,7 +3,7 @@ for its superconductivity via topological data analysis and first-principles cal
 is the LK-99 CIF data, contained in LK-99.cif.
 
 1. structural optimization: structuralRelaxation_PBEsol.py, pointCloud_converter.py
-2. electronic structure calculation: electronicstructure_SCAN.py, Hubbard+UCorrection.py*
+2. electronic structure calculation: electronicstructure_SCAN.py, Hubbard+UCorrection.py
 3. density functional theory: SCF_highPrecision.py, analyzingAnharmonicPhonons.py, smearing_MP.py
 4. phonon calculations: phononCalculations_DFPT.py, phonon-mediatedSuperconductivity_EPW_SCAN.py
 5. electron-phonon coupling analysis: plottingEliashberg.py
@@ -12,4 +12,5 @@ is the LK-99 CIF data, contained in LK-99.cif.
 8. comparative analysis: LK99_superconductivityAnalysis.py
 
 The packages needed to run this code are Quantum ESPRESSO for DFT/DFPT, giotto-tda and kepler-mapper for topological data analysis methods, and matplotlib for visualization. 
-Additionally, pymatgen and numpy are required for a program that executes the SCAN self-consistent field calculation, among other operations. 
+Additionally, pymatgen and numpy are required for a program that executes the SCAN self-consistent field calculation, among other operations, and EPW is important for electron-
+phonon coupling analysis.
