@@ -21,7 +21,7 @@ from pymatgen.io.quantumespresso import QEOutput
 
 # loads the LK-99 CIF 
 
-structure = Structure.from_file("LK99.cif") 
+structure = Structure.from_file("LK-99.cif") 
 
 # generates QE input for PBEsol relaxation 
 
