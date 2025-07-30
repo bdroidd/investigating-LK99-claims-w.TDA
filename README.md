@@ -2,7 +2,7 @@ This repository contains programs and Jupyter Notebook files that are able to im
 for its superconductivity via topological data analysis and first-principles calculations. The input for the first program, structuralRelaxation_PBEsol.py, 
 is the LK-99 CIF data, contained in LK-99.cif.
 
-1. structural optimization: structuralRelaxation_PBEsol.py, pointCloud_converter.py
+1. structural optimization: structuralRelaxation_PBEsol.ipynb, pointCloud_converter.py
 2. electronic structure calculation: electronicstructure_SCAN.py, Hubbard+UCorrection.py
 3. density functional theory: SCF_highPrecision.py, analyzingAnharmonicPhonons.py, smearing_MP.py
 4. phonon calculations: phononCalculations_DFPT.py, phonon-mediatedSuperconductivity_EPW_SCAN.py
