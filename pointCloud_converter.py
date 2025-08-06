@@ -2,12 +2,11 @@
 #   pointCloud_converter.py
 #
 #   The code below converts LK-99 CIF data into point clouds. It is written in the
-#   Python programming language, requires the user to enter the path to the CIF, and
-#   produces a three-dimensional scatter plot of atoms, if desired. Also, the program
-#   can save the points to a text file and returns an array of atomic coordinates. 
-#   One might eventually use such a point cloud to find persistent homology with 
-#   libraries such as GUDHI. The coordinates can be transformed into Quantum ESPRESSO
-#   input files with pymatgen.io.pwscf.
+#   Python programming language and produces a three-dimensional scatter plot of 
+#   atoms, if desired. Also, the program can save the points to a text file and 
+#   returns an array of atomic coordinates. One might eventually use such a point
+#   cloud to find persistent homology with libraries such as GUDHI. The coordinates
+#   can be transformed into Quantum ESPRESSO input files with pymatgen.io.pwscf.
 #____________________________________________________________________________________
 
 import numpy as np
