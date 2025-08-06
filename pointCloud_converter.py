@@ -64,7 +64,7 @@ def cif_to_point_cloud(cif_path, plot=False, save_txt=False):
 
         ax.set_zlabel("Z (Å)")
 
-        ax.set_title(f"The point cloud is {cif_path}.")
+        ax.set_title(f"Point Cloud of Pb₉Cu(PO₄)₆O (LK-99)")
 
         ax.legend()
 
@@ -72,8 +72,6 @@ def cif_to_point_cloud(cif_path, plot=False, save_txt=False):
     
     return coords
 
-# an example w/application to LK-99
-
-lk99_coords = cif_to_point_cloud("LK99.cif", plot=True, save_txt=True)
+lk99_coords = cif_to_point_cloud("LK-99.cif", plot=True, save_txt=True)
 
 print(f"Generated {len(lk99_coords)} atomic coordinates.")
