@@ -32,7 +32,7 @@ def cif_to_point_cloud(cif_path, plot=False, save_txt=False):
 
     if save_txt:
 
-        np.savetxt(f"{cif_path[:-4]}_point_cloud.txt", coords, 
+        np.savetxt(f"{cif_path[:-4]}_pointCloudCoordinates.txt", coords, 
                    
                   header="X Y Z", fmt="%.6f")
     
