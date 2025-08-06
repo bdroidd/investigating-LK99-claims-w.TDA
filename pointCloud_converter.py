@@ -15,7 +15,7 @@ from pymatgen.io.pwscf import PWInput
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
-def cif_to_point_cloud(cif_path, plot=False, save_txt=False):
+def cif_to_point_cloud(cif_path, plot = False, save_txt = False):
     
     # loads CIF using pymatgen
 
@@ -26,6 +26,16 @@ def cif_to_point_cloud(cif_path, plot=False, save_txt=False):
     coords = np.array([site.coords for site in struct.sites])
 
     elements = [site.species_string for site in struct.sites]
+
+    # standardizes point cloud (centering & scaling)
+
+    coords -= np.mean(coords, axis = 0)
+
+    max_distance = np.max(np.linalg.norm(coords, axis = 1))
+
+    if max_distance > 0:
+
+        coords /= max_distance
     
     # saves to text file (optional)
 
@@ -33,15 +43,15 @@ def cif_to_point_cloud(cif_path, plot=False, save_txt=False):
 
         np.savetxt(f"{cif_path[:-4]}_pointCloudCoordinates.txt", coords, 
                    
-                  header="X Y Z", fmt="%.6f")
+                  header = "X Y Z", fmt = "%.6f")
     
     # 3D visualization (optional)
 
     if plot:
 
-        fig = plt.figure(figsize=(10, 7))
+        fig = plt.figure(figsize = (10, 7))
 
-        ax = fig.add_subplot(111, projection='3d')
+        ax = fig.add_subplot(111, projection = '3d')
         
         # colours points by element 
 
@@ -55,7 +65,7 @@ def cif_to_point_cloud(cif_path, plot=False, save_txt=False):
 
             ax.scatter(coords[idx, 0], coords[idx, 1], coords[idx, 2], 
                        
-                      label=elem, c=[color], s=50, alpha=0.7)
+                      label = elem, c = [color], s = 50, alpha = 0.7)
         
         ax.set_xlabel("X (Å)")
 
@@ -71,6 +81,6 @@ def cif_to_point_cloud(cif_path, plot=False, save_txt=False):
     
     return coords
 
-lk99_coords = cif_to_point_cloud("LK-99.cif", plot=True, save_txt=True)
+lk99_coords = cif_to_point_cloud("LK-99.cif", plot = True, save_txt = True)
 
 print(f"Generated {len(lk99_coords)} atomic coordinates.")
