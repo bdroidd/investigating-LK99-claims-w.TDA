@@ -1,4 +1,4 @@
-# generated using pymatgen & the user, manassharma07, initially added the structure
+# generated using pymatgen — the user, manassharma07, is the original owner of the data
 
 data_CuP6Pb9O25
 _symmetry_space_group_name_H-M   'P 1'
