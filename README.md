@@ -1,4 +1,4 @@
-This repository contains programs and Jupyter Notebook files that are able to implement the following workflow, which is used to evaluate the LK-99 material (Pb9Cu(PO4)6O)
+This repository contains programs and Jupyter Notebook files that are able to implement the following workflow (see figure below for visual reference), which is used to evaluate the LK-99 material (Pb9Cu(PO4)6O)
 for its superconductivity via topological data analysis and first-principles calculations. The input for the first program, structuralRelaxation_PBEsol.py, 
 is the LK-99 CIF data, contained in LK-99.cif.
 
@@ -14,3 +14,5 @@ is the LK-99 CIF data, contained in LK-99.cif.
 The packages needed to run this code are Quantum ESPRESSO for DFT/DFPT, giotto-tda and kepler-mapper for topological data analysis methods, and matplotlib for visualization. 
 Additionally, pymatgen and numpy are required for a program that executes the SCAN self-consistent field calculation, among other operations, and EPW is important for electron-
 phonon coupling analysis.
+
+<img width="2903" height="1169" alt="figure2_integratedComputationalWorkflow (Hajdari, w title)" src="https://github.com/user-attachments/assets/9c061d34-e61e-4b78-b930-bbb3461f3a2c" />
