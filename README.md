@@ -15,4 +15,5 @@ The packages needed to run this code are Quantum ESPRESSO for DFT/DFPT, giotto-t
 Additionally, pymatgen and numpy are required for a program that executes the SCAN self-consistent field calculation, among other operations, and EPW is important for electron-
 phonon coupling analysis.
 
-<img width="2903" height="1169" alt="figure2_integratedComputationalWorkflow (Hajdari, w title)" src="https://github.com/user-attachments/assets/9c061d34-e61e-4b78-b930-bbb3461f3a2c" />
+
+<img width="2887" height="1079" scale = 0.85 alt="figure2_integratedComputationalWorkflow (Hajdari, w title)" src="https://github.com/user-attachments/assets/65df944f-d4cb-49fd-9f93-9115a7436fd6" />
